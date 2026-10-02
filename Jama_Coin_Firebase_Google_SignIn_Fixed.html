@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#050505">
+<title>Jama Coin — JAMA/USD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{--orange:#ff7a00;--orange2:#ff951f;--black:#050505;--card:#101010;--card2:#151515;--white:#fff;--muted:#929292;--border:rgba(255,255,255,.09);--green:#36d98a;--red:#ff4545;--shadow:0 18px 50px rgba(0,0,0,.5)}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;min-height:100%;background:var(--black);color:#fff;font-family:Inter,Arial,sans-serif}
+body{overflow-x:hidden}button,input{font-family:inherit}button{border:0;cursor:pointer}
+.app{width:100%;max-width:540px;min-height:100vh;margin:auto;background:radial-gradient(circle at 50% -10%,rgba(255,122,0,.12),transparent 32%),var(--black);position:relative;padding-bottom:92px}
+.loader-screen{position:fixed;inset:0;z-index:9999;background:#030303;display:flex;align-items:center;justify-content:center;transition:.5s}
+.loader-screen.hide{opacity:0;visibility:hidden;pointer-events:none}.loader-wrap{text-align:center}
+.loader-logo{width:112px;height:112px;margin:auto;position:relative;animation:float 2s ease-in-out infinite}.loader-logo svg{width:100%;height:100%;filter:drop-shadow(0 0 25px rgba(255,122,0,.35))}
+.loader-ring{position:absolute;inset:-13px;border:3px solid transparent;border-top-color:var(--orange);border-right-color:var(--orange);border-radius:50%;animation:spin 1s linear infinite}
+.loader-name{margin-top:24px;font-size:24px;font-weight:900;letter-spacing:2px}.loader-name span{color:var(--orange)}.loader-text{color:var(--muted);font-size:12px;margin-top:8px}
+.loader-bar{width:160px;height:3px;background:#222;border-radius:10px;margin:18px auto 0;overflow:hidden}.loader-bar span{display:block;width:45%;height:100%;background:var(--orange);box-shadow:0 0 12px var(--orange);animation:load 1.4s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}@keyframes load{0%{transform:translateX(-160%)}100%{transform:translateX(350%)}}
+.topbar{position:sticky;top:0;z-index:100;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(5,5,5,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:11px}.brand-logo{width:42px;height:42px}.brand-logo svg{width:100%;height:100%}.brand-text strong{display:block;font-size:16px;font-weight:900}.brand-text small{color:var(--orange);font-size:9px;font-weight:800;letter-spacing:1.5px}
+.header-actions{display:flex;gap:9px}.icon-btn{width:40px;height:40px;border-radius:13px;background:#111;border:1px solid var(--border);color:#fff;font-size:15px}
+.page{display:none;padding:20px 16px;animation:pageIn .3s ease}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.welcome{margin:4px 2px 17px}.welcome p{color:var(--muted);font-size:12px;margin-bottom:5px}.welcome h1{font-size:25px;font-weight:900;letter-spacing:-1px}
+.balance-card{position:relative;overflow:hidden;min-height:245px;padding:23px;border-radius:27px;background:linear-gradient(135deg,#17100a,#0e0e0e 52%,#080808);border:1px solid rgba(255,122,0,.25);box-shadow:var(--shadow)}
+.balance-top,.market-top,.holding-row{display:flex;align-items:center;justify-content:space-between}.balance-label{color:#aaa;font-size:11px;font-weight:600}.coin-mini{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800}.mini-logo,.market-logo,.holding-logo{width:38px;height:38px}.mini-logo{width:27px;height:27px}.mini-logo svg,.market-logo svg,.holding-logo svg{width:100%;height:100%}
+.balance-number{margin-top:18px;font-size:35px;line-height:1;font-weight:900;letter-spacing:-1.8px}.balance-usd{color:var(--muted);margin-top:9px;font-size:13px}.balance-price{margin-top:15px;display:flex;align-items:center;gap:8px;font-size:12px}.price-label{color:var(--muted)}.price-value{font-weight:800}.price-change{color:var(--green);background:rgba(54,217,138,.08);padding:4px 7px;border-radius:7px;font-size:9px;font-weight:800}
+.balance-bottom{position:absolute;left:23px;right:23px;bottom:21px;display:flex;justify-content:space-between;align-items:end}.network-pill{display:flex;align-items:center;gap:6px;color:#bbb;font-size:10px}.network-dot{width:7px;height:7px;background:var(--orange);border-radius:50%;box-shadow:0 0 10px var(--orange)}
+.connect-small{background:var(--orange);color:#000;font-weight:900;font-size:10px;padding:10px 14px;border-radius:11px}
+.section{margin-top:25px}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.section-head h2{font-size:15px}.section-head span{color:var(--muted);font-size:10px}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.quick{background:var(--card);border:1px solid var(--border);border-radius:17px;min-height:82px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px}.quick i,.firebase-user-icon{display:grid;place-items:center;background:rgba(255,122,0,.1);color:var(--orange)}
+.quick i{width:34px;height:34px;border-radius:11px}.quick span{font-size:10px;font-weight:700}
+.market-card,.reward-card,.wallet-address,.holding,.profile-card,.profile-login-card,.profile-item{background:var(--card);border:1px solid var(--border)}.market-card{border-radius:23px;padding:18px}.market-pair{display:flex;align-items:center;gap:10px}.market-pair strong{display:block;font-size:13px}.market-pair small{color:var(--muted);font-size:9px}.market-price{margin-top:17px;font-size:27px;font-weight:900}.market-price small{color:var(--muted);font-size:11px;font-weight:600}.market-footer{display:flex;justify-content:space-between;margin-top:13px;padding-top:13px;border-top:1px solid var(--border);font-size:9px}.market-footer span{color:var(--muted)}
+.reward-card{padding:19px;border-radius:23px}.reward-main{display:flex;align-items:center;gap:19px}.progress{width:112px;height:112px;flex:none;position:relative}.progress svg{width:100%;height:100%;transform:rotate(-90deg)}.progress-bg,.progress-value{fill:none;stroke-width:9}.progress-bg{stroke:#242424}.progress-value{stroke:var(--orange);stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:.5s}.progress-center{position:absolute;inset:0;display:grid;place-items:center;text-align:center}.progress-center strong{font-size:19px}.progress-center small{display:block;color:var(--muted);font-size:8px}.reward-info{flex:1}.reward-info h3{font-size:15px;margin-bottom:7px}.reward-info p{color:var(--muted);font-size:10px;line-height:1.6}.mining-rate{margin-top:10px;color:var(--orange);font-size:11px;font-weight:800}.primary-btn{width:100%;height:53px;border-radius:15px;background:var(--orange);color:#000;font-weight:900;margin-top:18px}.reward-status{margin-top:13px;padding-top:13px;border-top:1px solid var(--border);display:flex;justify-content:space-between;color:var(--muted);font-size:10px}.reward-status b{color:#fff}.reward-signin{cursor:pointer;color:var(--orange)!important}.reward-signin:hover{text-decoration:underline}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.info-card{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:17px}.info-card i{color:var(--orange);font-size:15px;margin-bottom:11px}.info-card span{display:block;color:var(--muted);font-size:9px;margin-bottom:4px}.info-card strong{font-size:12px}
+.wallet-address{padding:18px;border-radius:21px}.address-label{color:var(--muted);font-size:10px;margin-bottom:9px}.address-row{display:flex;align-items:center;gap:8px}.address{flex:1;font-size:12px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.copy-btn{width:37px;height:37px;border-radius:11px;background:rgba(255,122,0,.1);color:var(--orange)}.wallet-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:13px}.wallet-action{padding:17px 10px;border-radius:17px;border:1px solid var(--border);background:var(--card);color:#fff;text-align:center}.wallet-action i{color:var(--orange);display:block;margin-bottom:8px}.wallet-action span{font-size:10px;font-weight:700}
+.holding{margin-top:14px;padding:17px;border-radius:19px}.holding-left{display:flex;align-items:center;gap:11px}.holding-name strong{display:block;font-size:12px}.holding-name small,.holding-right small{color:var(--muted);font-size:9px}.holding-right{text-align:right}.holding-right strong{display:block;font-size:13px}
+.empty{min-height:390px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.empty-icon{width:75px;height:75px;border-radius:23px;background:#111;border:1px solid var(--border);display:grid;place-items:center;color:var(--orange);font-size:26px;margin-bottom:18px}.empty h2{font-size:17px}.empty p{color:var(--muted);font-size:11px;max-width:270px;line-height:1.6;margin-top:7px}
+.profile-card{text-align:center;border-radius:25px;padding:25px 18px}.profile-logo{width:80px;height:80px;margin:auto}.profile-logo svg{width:100%;height:100%}.profile-card h2{margin-top:13px;font-size:18px}.profile-card p{color:var(--muted);font-size:10px;margin-top:5px}
+.profile-login-card{border-radius:23px;padding:17px;margin-bottom:14px}.profile-login-user{display:flex;align-items:center;gap:12px;margin-bottom:13px}.firebase-user-icon{width:43px;height:43px;border-radius:14px;overflow:hidden;flex:none}.firebase-user-icon img{width:100%;height:100%;object-fit:cover}.profile-login-user strong{display:block;font-size:12px}.profile-login-user small{display:block;color:var(--muted);font-size:9px;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.profile-logout{width:100%;height:46px;border-radius:13px;background:#1a1a1a;color:#fff;border:1px solid var(--border);font-size:10px;font-weight:800}
+.profile-menu{margin-top:14px;display:grid;gap:8px}.profile-item{width:100%;color:#fff;border-radius:16px;min-height:57px;display:flex;align-items:center;gap:13px;padding:0 15px;text-align:left}.profile-item i{width:30px;color:var(--orange)}.profile-item span{flex:1;font-size:11px;font-weight:700}.profile-item small{color:var(--muted)}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(540px,100%);height:76px;z-index:200;background:rgba(8,8,8,.96);backdrop-filter:blur(18px);border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr);padding:7px 10px 9px}.nav-btn{background:none;color:#666;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;position:relative}.nav-btn i{font-size:17px}.nav-btn span{font-size:9px;font-weight:700}.nav-btn.active{color:var(--orange)}.nav-btn.active:before{content:"";position:absolute;top:0;width:25px;height:3px;border-radius:5px;background:var(--orange)}
+.modal{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:flex-end}.modal.show{display:flex}.modal-box{width:min(540px,100%);margin:auto;background:#101010;border:1px solid var(--border);border-bottom:0;border-radius:27px 27px 0 0;padding:20px}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.modal-head h2{font-size:17px}.close{width:35px;height:35px;border-radius:10px;background:#1b1b1b;color:#fff}.form-label{display:block;color:var(--muted);font-size:10px;margin:14px 0 7px}.input-wrap{position:relative}.input-wrap input{width:100%;height:51px;border-radius:14px;background:#080808;border:1px solid var(--border);color:#fff;outline:none;padding:0 14px;font-size:13px}.input-suffix{position:absolute;right:13px;top:50%;transform:translateY(-50%);color:var(--orange);font-size:10px;font-weight:900}.receive-box{background:#080808;border:1px solid var(--border);border-radius:18px;padding:17px;text-align:center}.receive-qr{width:150px;height:150px;margin:4px auto 17px;background:#fff;padding:8px;display:grid;place-items:center}.receive-qr div{width:100%;height:100%;background:repeating-linear-gradient(45deg,#000 0 4px,#fff 4px 8px)}.receive-address{color:#ccc;font-size:10px;line-height:1.6;word-break:break-all}
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);z-index:1000;background:#fff;color:#000;padding:12px 16px;border-radius:13px;font-size:11px;font-weight:800;opacity:0;pointer-events:none;transition:.3s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:370px){.quick-grid{gap:6px}.quick{min-height:76px}.balance-number{font-size:31px}.reward-main{gap:12px}.progress{width:98px;height:98px}.market-price{font-size:24px}}
+
+
+/* =====================================================
+   SIGN-IN / DESKTOP RESPONSIVE
+===================================================== */
+
+.google-login-button{
+    background:#fff !important;
+    color:#111 !important;
+    border:1px solid #ddd !important;
+    box-shadow:0 4px 14px rgba(0,0,0,.18);
+}
+
+.signin-mine{
+    display:block;
+    margin-top:9px;
+    text-align:center;
+    color:var(--orange);
+    font-size:10px;
+    font-weight:800;
+    text-decoration:none;
+}
+
+.signin-mine:hover{text-decoration:underline}
+
+@media (min-width:700px){
+    body{
+        background:
+            radial-gradient(circle at 50% 0%,rgba(255,122,0,.10),transparent 35%),
+            #020202;
+    }
+
+    .app{
+        max-width:1180px;
+        min-height:100vh;
+        padding-bottom:100px;
+        background:
+            radial-gradient(circle at 50% -10%,rgba(255,122,0,.12),transparent 32%),
+            var(--black);
+    }
+
+    .topbar{
+        height:78px;
+        padding:0 32px;
+    }
+
+    .page{
+        max-width:1120px;
+        margin:0 auto;
+        padding:30px 32px;
+    }
+
+    #home{
+        display:grid;
+        grid-template-columns:1.15fr .85fr;
+        gap:24px;
+        align-items:start;
+    }
+
+    #home > .welcome{
+        grid-column:1 / -1;
+    }
+
+    #home > .balance-card{
+        grid-column:1 / -1;
+    }
+
+    #home > .section{
+        margin-top:0;
+    }
+
+    #home > .section:nth-of-type(1){
+        grid-column:1;
+    }
+
+    #home > .section:nth-of-type(2){
+        grid-column:2;
+    }
+
+    #home > .section:nth-of-type(3),
+    #home > .section:nth-of-type(4){
+        grid-column:1 / -1;
+    }
+
+    .balance-card{
+        min-height:270px;
+        padding:30px;
+    }
+
+    .balance-number{font-size:48px}
+
+    .quick-grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .reward-main{
+        gap:30px;
+    }
+
+    .market-card,.reward-card{
+        min-height:220px;
+    }
+
+    .info-grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .profile-card,
+    .profile-login-card,
+    .wallet-address,
+    .holding,
+    .empty{
+        max-width:850px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .bottom-nav{
+        width:min(760px,92%);
+        border:1px solid var(--border);
+        border-radius:22px 22px 0 0;
+    }
+
+    .modal-box{
+        width:min(650px,100%);
+    }
+}
+
+@media (min-width:1200px){
+    .app{max-width:1280px}
+    .page{max-width:1200px}
+    .topbar{padding:0 44px}
+}
+</style>
+</head>
+
+<body>
+<div class="loader-screen" id="loader"><div class="loader-wrap">
+<div class="loader-logo"><div class="loader-ring"></div>
+<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="55" fill="#ff7a00"/><circle cx="60" cy="60" r="44" fill="#050505"/><path d="M35 34H83V45H73V70C73 82 67 88 55 88C44 88 36 82 34 71L46 67C47 73 50 76 55 76C59 76 61 74 61 69V45H35Z" fill="#fff"/><path d="M31 34H87V40H31Z" fill="#ff7a00"/></svg>
+</div><div class="loader-name">JAMA <span>COIN</span></div><div class="loader-text">Initializing JAMA Coin...</div><div class="loader-bar"><span></span></div>
+</div></div>
+
+<div class="app">
+<header class="topbar"><div class="brand"><div class="brand-logo"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="56" fill="#ff7a00"/><circle cx="60" cy="60" r="45" fill="#050505"/><path d="M35 34H83V45H73V70C73 82 67 88 55 88C44 88 36 82 34 71L46 67C47 73 50 76 55 76C59 76 61 74 61 69V45H35Z" fill="#fff"/><path d="M31 34H87V40H31Z" fill="#ff7a00"/></svg></div><div class="brand-text"><strong>Jama Coin</strong><small>JAMA / USD</small></div></div><button class="icon-btn" onclick="showToast('Notifications are up to date')"><i class="fa-regular fa-bell"></i></button></header>
+
+<main class="page active" id="home">
+<div class="welcome"><p>Welcome to Jama Coin</p><h1>Your JAMA Wallet</h1></div>
+<section class="balance-card"><div class="balance-top"><div class="balance-label">TOTAL BALANCE</div><div class="coin-mini"><div class="mini-logo"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" fill="#ff7a00"/><circle cx="60" cy="60" r="46" fill="#050505"/><path d="M35 34H83V45H73V70C73 82 67 88 55 88C44 88 36 82 34 71L46 67C47 73 50 76 55 76C59 76 61 74 61 69V45H35Z" fill="#fff"/><path d="M31 34H87V40H31Z" fill="#ff7a00"/></svg></div>JAMA</div></div>
+<div class="balance-number" id="balance">0.0000</div><div class="balance-usd" id="usdBalance">≈ $0.00</div><div class="balance-price"><span class="price-label">JAMA/USD</span><span class="price-value" id="jamaPrice">—</span><span class="price-change">+0.00%</span></div>
+<div class="balance-bottom"><div class="network-pill"><span class="network-dot"></span>BNB Smart Chain</div><button class="connect-small" onclick="connectWallet()">CONNECT</button></div></section>
+
+<section class="section"><div class="section-head"><h2>Quick Actions</h2><span>JAMA</span></div><div class="quick-grid"><button class="quick" onclick="openModal('sendModal')"><i class="fa-solid fa-arrow-up"></i><span>Send</span></button><button class="quick" onclick="openModal('receiveModal')"><i class="fa-solid fa-arrow-down"></i><span>Receive</span></button><button class="quick" onclick="showToast('JAMA swap service is not connected yet')"><i class="fa-solid fa-repeat"></i><span>Swap</span></button><button class="quick" onclick="showToast('Market data will appear when connected')"><i class="fa-solid fa-chart-line"></i><span>Stats</span></button></div></section>
+
+<section class="section"><div class="section-head"><h2>Market</h2><span>JAMA/USD</span></div><div class="market-card"><div class="market-top"><div class="market-pair"><div class="market-logo"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="57" fill="#ff7a00"/><circle cx="60" cy="60" r="45" fill="#050505"/><path d="M35 34H83V45H73V70C73 82 67 88 55 88C44 88 36 82 34 71L46 67C47 73 50 76 55 76C59 76 61 74 61 69V45H35Z" fill="#fff"/><path d="M31 34H87V40H31Z" fill="#ff7a00"/></svg></div><div><strong>JAMA / USD</strong><small>Jama Coin</small></div></div><i class="fa-solid fa-chart-line" style="color:var(--orange)"></i></div><div class="market-price" id="marketPrice">— <small>USD</small></div><div class="market-footer"><span>Network</span><b>BNB Smart Chain</b></div></div></section>
+
+<section class="section"><div class="section-head"><h2>Jama Rewards</h2><span>REWARD ENGINE</span></div><div class="reward-card"><div class="reward-main"><div class="progress"><svg viewBox="0 0 100 100"><circle class="progress-bg" cx="50" cy="50" r="45"/><circle class="progress-value" id="progressCircle" cx="50" cy="50" r="45"/></svg><div class="progress-center"><div><strong id="progressText">0%</strong><small>MINING</small></div></div></div><div class="reward-info"><h3>Jama Mining</h3><p>Mine for one hour per session. Your balance is saved to your Google account and can be recovered on another device.</p><div class="mining-rate" id="miningRate">0.05 JAMA / hour</div><button class="primary-btn" style="height:42px;margin-top:12px;font-size:10px" onclick="startMining()">START MINING</button>
+</div></div><div class="reward-status"><span>Mining status</span><b id="rewardStatus" class="reward-signin" onclick="goToProfile(event)">Sign in to mine</b></div></div></section>
+
+<section class="section"><div class="section-head"><h2>Jama Coin</h2><span>JAMA/USD</span></div><div class="info-grid"><div class="info-card"><i class="fa-solid fa-coins"></i><span>Token</span><strong>Jama Coin</strong></div><div class="info-card"><i class="fa-solid fa-tag"></i><span>Pair</span><strong>JAMA/USD</strong></div><div class="info-card"><i class="fa-solid fa-link"></i><span>Network</span><strong>BNB Chain</strong></div><div class="info-card"><i class="fa-solid fa-shield-halved"></i><span>Wallet</span><strong>EVM Wallet</strong></div></div></section>
+</main>
+
+<main class="page" id="wallet">
+<div class="welcome"><p>Jama Coin</p><h1>My Wallet</h1></div>
+<div class="wallet-address"><div class="address-label">CONNECTED ADDRESS</div><div class="address-row"><div class="address" id="walletAddress">Wallet not connected</div><button class="copy-btn" onclick="copyAddress()"><i class="fa-regular fa-copy"></i></button></div></div>
+<div class="wallet-actions"><button class="wallet-action" onclick="openModal('sendModal')"><i class="fa-solid fa-arrow-up"></i><span>Send</span></button><button class="wallet-action" onclick="openModal('receiveModal')"><i class="fa-solid fa-arrow-down"></i><span>Receive</span></button><button class="wallet-action" onclick="showToast('Swap service is not connected')"><i class="fa-solid fa-repeat"></i><span>Swap</span></button></div>
+<section class="section"><div class="section-head"><h2>Your Assets</h2></div><div class="holding"><div class="holding-row"><div class="holding-left"><div class="holding-logo"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" fill="#ff7a00"/><circle cx="60" cy="60" r="46" fill="#050505"/><path d="M35 34H83V45H73V70C73 82 67 88 55 88C44 88 36 82 34 71L46 67C47 73 50 76 55 76C59 76 61 74 61 69V45H35Z" fill="#fff"/><path d="M31 34H87V40H31Z" fill="#ff7a00"/></svg></div><div class="holding-name"><strong>Jama Coin</strong><small>JAMA</small></div></div><div class="holding-right"><strong id="walletHolding">0.0000 JAMA</strong><small>Available balance</small></div></div></div></section>
+</main>
+
+<main class="page" id="activity"><div class="welcome"><p>Jama Coin</p><h1>Activity</h1></div><div class="empty"><div class="empty-icon"><i class="fa-solid fa-clock-rotate-left"></i></div><h2>No Transactions Yet</h2><p>Your Jama Coin transaction history will appear here after wallet activity is available.</p></div></main>
+
+<main class="page" id="profile">
+<div class="welcome"><p>Jama Coin</p><h1>Profile</h1></div>
+<div class="profile-login-card"><div class="profile-login-user"><div class="firebase-user-icon" id="firebaseUserIcon"><i class="fa-solid fa-user"></i></div><div><strong id="firebaseUserName">Not signed in</strong><small id="firebaseUserEmail">Sign in to save your JAMA balance</small></div></div><button class="primary-btn google-login-button" id="googleLoginBtn" onclick="jamaGoogleLogin()"><i class="fa-brands fa-google"></i>&nbsp; CONTINUE WITH GOOGLE</button><button class="profile-logout" id="googleLogoutBtn" onclick="jamaGoogleLogout()" style="display:none"><i class="fa-solid fa-right-from-bracket"></i> SIGN OUT</button></div>
+<div class="profile-card"><div class="profile-logo"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="57" fill="#ff7a00"/><circle cx="60" cy="60" r="45" fill="#050505"/><path d="M35 34H83V45H73V70C73 82 67 88 55 88C44 88 36 82 34 71L46 67C47 73 50 76 55 76C59 76 61 74 61 69V45H35Z" fill="#fff"/><path d="M31 34H87V40H31Z" fill="#ff7a00"/></svg></div><h2>Jama Coin</h2><p>JAMA / USD Network</p></div>
+<div class="profile-menu"><button class="profile-item" onclick="connectWallet()"><i class="fa-solid fa-wallet"></i><span>Wallet Connection</span><small><i class="fa-solid fa-chevron-right"></i></small></button><button class="profile-item" onclick="switchToBNB()"><i class="fa-solid fa-link"></i><span>Network</span><small>BNB</small></button><button class="profile-item" onclick="showToast('JAMA/USD market interface')"><i class="fa-solid fa-dollar-sign"></i><span>Market Pair</span><small>USD</small></button></div>
+</main>
+
+<nav class="bottom-nav"><button class="nav-btn active" onclick="navigate('home',this)"><i class="fa-solid fa-house"></i><span>Home</span></button><button class="nav-btn" onclick="navigate('wallet',this)"><i class="fa-solid fa-wallet"></i><span>Wallet</span></button><button class="nav-btn" onclick="navigate('activity',this)"><i class="fa-solid fa-clock-rotate-left"></i><span>Activity</span></button><button class="nav-btn" data-page="profile" onclick="navigate('profile',this)"><i class="fa-solid fa-user"></i><span>Profile</span></button></nav>
+</div>
+
+<div class="modal" id="sendModal"><div class="modal-box"><div class="modal-head"><h2>Send JAMA</h2><button class="close" onclick="closeModal('sendModal')"><i class="fa-solid fa-xmark"></i></button></div><label class="form-label">Recipient Address</label><div class="input-wrap"><input id="sendAddress" type="text" placeholder="0x..." autocomplete="off"></div><label class="form-label">Amount</label><div class="input-wrap"><input id="sendAmount" type="number" min="0" step="any" placeholder="0.00"><span class="input-suffix">JAMA</span></div><button class="primary-btn" onclick="sendToken()">CONTINUE</button></div></div>
+<div class="modal" id="receiveModal"><div class="modal-box"><div class="modal-head"><h2>Receive JAMA</h2><button class="close" onclick="closeModal('receiveModal')"><i class="fa-solid fa-xmark"></i></button></div><div class="receive-box"><div class="receive-qr"><div></div></div><div class="receive-address" id="receiveAddress">Connect your wallet to display your receiving address.</div><button class="primary-btn" onclick="copyAddress()">COPY ADDRESS</button></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+window.JAMA_CONFIG={tokenName:"Jama Coin",tokenSymbol:"JAMA",marketPair:"JAMA/USD",chainId:56,chainIdHex:"0x38",chainName:"BNB Smart Chain",nativeCurrency:"BNB",decimals:18,tokenContract:"",priceUSD:0};
+let currentAddress="",toastTimer;
+
+function showToast(message){const t=document.getElementById("toast");t.textContent=message;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2600)}
+function goToProfile(){
+    const profileButton=document.querySelectorAll(".nav-btn")[3];
+    navigate("profile",profileButton);
+}
+function navigate(page,button){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));const x=document.getElementById(page);if(x)x.classList.add("active");document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));if(button)button.classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+function openModal(id){document.getElementById(id)?.classList.add("show")}function closeModal(id){document.getElementById(id)?.classList.remove("show")}
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("show")}));
+function updatePrice(){
+    const p=Number(JAMA_CONFIG.priceUSD);
+    const announced=p>0;
+    document.getElementById("jamaPrice").textContent=announced?"$"+p.toFixed(4):"—";
+    document.getElementById("marketPrice").innerHTML=announced?"$"+p.toFixed(4)+" <small>USD</small>":"— <small>USD</small>";
+    document.getElementById("usdBalance").textContent=announced?"≈ $"+(balance*p).toFixed(4):"Price: To be announced";
+}
+updatePrice();
+
+async function connectWallet(){if(!window.ethereum){showToast("Install a compatible Web3 wallet");return}try{const a=await ethereum.request({method:"eth_requestAccounts"});if(!a?.length)return;currentAddress=a[0];await ensureBNBNetwork();updateWalletUI();showToast("Wallet connected")}catch(e){showToast(e?.message||"Wallet connection cancelled")}}
+async function ensureBNBNetwork(){try{let c=await ethereum.request({method:"eth_chainId"});if(c.toLowerCase()!==JAMA_CONFIG.chainIdHex)await switchToBNB();return true}catch(e){return false}}
+async function switchToBNB(){if(!window.ethereum){showToast("Web3 wallet not detected");return}try{await ethereum.request({method:"wallet_switchEthereumChain",params:[{chainId:JAMA_CONFIG.chainIdHex}]});showToast("BNB Smart Chain selected")}catch(e){showToast("Select BNB Smart Chain in your wallet")}}
+function updateWalletUI(){if(!currentAddress)return;let s=currentAddress.slice(0,8)+"..."+currentAddress.slice(-6);document.getElementById("walletAddress").textContent=s;document.getElementById("receiveAddress").textContent=currentAddress;document.querySelector(".connect-small").textContent="CONNECTED"}
+async function copyAddress(){if(!currentAddress){showToast("Connect your wallet first");return}try{await navigator.clipboard.writeText(currentAddress);showToast("Address copied")}catch(e){showToast("Could not copy address")}}
+function sendToken(){showToast("JAMA transfer will be enabled after the official contract is connected")}
+
+if(window.ethereum){ethereum.on("accountsChanged",a=>{currentAddress=a?.[0]||"";if(currentAddress)updateWalletUI()});ethereum.on("chainChanged",()=>showToast("Network changed"))}
+
+window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loader")?.classList.add("hide"),1800));
+</script>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {getFirestore,doc,getDoc,setDoc,updateDoc,serverTimestamp,Timestamp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyBlnkK6si7qDIt0HnvshB18O-7Ltok-o00",
+authDomain:"jama-coin.firebaseapp.com",
+projectId:"jama-coin",
+storageBucket:"jama-coin.firebasestorage.app",
+messagingSenderId:"164893738834",
+appId:"1:164893738834:web:8e4316bc35d313bdd0dc8b",
+measurementId:"G-EF0W3D365C"
+};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider();
+window.JAMA_FIREBASE={auth,db,provider,signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged,doc,getDoc,setDoc,updateDoc,serverTimestamp,Timestamp};
+
+const MINING_START=new Date("2026-10-01T00:00:00Z"),SESSION=3600000;
+let user=null,balance=0,mining=false,started=null,ends=null,ticker=null;
+
+function rateForDate(d){d=d?.toDate?d.toDate():new Date(d);let days=(d-MINING_START)/86400000,month=Math.floor(days/30.4375)+1;if(month<=0)return 0;if(month<=3)return .05;if(month<=6)return .10;if(month<=9)return .50;if(month<=12)return 1;return 0}
+function currentRate(){return rateForDate(new Date())}
+function userRef(){return doc(db,"users",user.uid)}
+function updateRate(){let r=currentRate();document.getElementById("miningRate").textContent=r?r.toFixed(2)+" JAMA / hour":"Mining period completed"}updateRate();
+
+function updateUI(){
+document.getElementById("balance").textContent=balance.toFixed(4);
+document.getElementById("walletHolding").textContent=balance.toFixed(4)+" JAMA";
+document.getElementById("usdBalance").textContent=Number(JAMA_CONFIG.priceUSD)>0?"≈ $"+(balance*Number(JAMA_CONFIG.priceUSD)).toFixed(4):"Price: To be announced";
+let s=document.getElementById("rewardStatus");
+if(!mining)s.textContent=currentRate()?"Ready to mine":"Mining period completed";
+}
+function progress(v){v=Math.max(0,Math.min(100,v));document.getElementById("progressCircle").style.strokeDashoffset=283-(v/100)*283;document.getElementById("progressText").textContent=Math.round(v)+"%"}
+function countdown(ms){let sec=Math.max(0,Math.floor(ms/1000)),m=Math.floor(sec/60),s=sec%60;document.getElementById("rewardStatus").textContent="Mining • "+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")}
+
+async function completeSession(){
+clearInterval(ticker);ticker=null;if(!user)return;
+let earned=rateForDate(started);
+if(earned<=0){mining=false;started=ends=null;updateUI();return}
+try{
+let snap=await getDoc(userRef());let data=snap.exists()?snap.data():{};
+let newBalance=Number(data.balance||0)+earned,total=Number(data.totalMined||0)+earned;
+await updateDoc(userRef(),{balance:newBalance,totalMined:total,mining:false,miningStartedAt:null,miningEndsAt:null,lastUpdated:serverTimestamp()});
+balance=newBalance;mining=false;started=ends=null;progress(100);updateUI();showToast("+"+earned.toFixed(2)+" JAMA added to your balance");
+}catch(e){console.error(e);showToast("Mining completed but could not save the balance")}
+}
+
+async function tick(){
+if(!mining||!started)return;
+let start=started.toDate?started.toDate():new Date(started),elapsed=Date.now()-start.getTime();
+progress(Math.min(100,elapsed/SESSION*100));
+if(elapsed>=SESSION){await completeSession();return}
+countdown(SESSION-elapsed);
+}
+function startTicker(){clearInterval(ticker);ticker=setInterval(tick,1000);tick()}
+
+window.goToProfile=function(event){
+    if(event) event.preventDefault();
+    const btn=document.querySelector('.nav-btn[data-page="profile"]') || document.querySelectorAll('.nav-btn')[3];
+    navigate("profile",btn);
+    setTimeout(()=>document.getElementById("googleLoginBtn")?.scrollIntoView({behavior:"smooth",block:"center"}),120);
+};
+
+window.startMining=async function(){
+if(!user){showToast("Sign in with Google before mining");navigate("profile",document.querySelectorAll(".nav-btn")[3]);return}
+if(mining){showToast("Your 1-hour mining session is already running");return}
+let r=currentRate();if(!r){showToast("The 12-month mining period has ended");return}
+let now=new Date(),end=new Date(now.getTime()+SESSION);
+try{
+await updateDoc(userRef(),{mining:true,miningStartedAt:Timestamp.fromDate(now),miningEndsAt:Timestamp.fromDate(end),lastUpdated:serverTimestamp()});
+mining=true;started=Timestamp.fromDate(now);ends=Timestamp.fromDate(end);progress(0);startTicker();showToast("JAMA mining started for 1 hour");
+}catch(e){console.error(e);showToast("Could not start mining")}
+};
+
+async function loadUser(){
+let snap=await getDoc(userRef());
+if(!snap.exists()){await setDoc(userRef(),{uid:user.uid,name:user.displayName||"",email:user.email||"",photoURL:user.photoURL||"",balance:0,totalMined:0,mining:false,miningStartedAt:null,miningEndsAt:null,createdAt:serverTimestamp(),lastUpdated:serverTimestamp()});balance=0;mining=false;updateUI();return}
+let d=snap.data();balance=Number(d.balance||0);mining=d.mining===true;started=d.miningStartedAt||null;ends=d.miningEndsAt||null;
+if(mining&&started){let st=started.toDate?started.toDate():new Date(started);if(Date.now()-st.getTime()>=SESSION)await completeSession();else startTicker()}
+updateUI()
+}
+
+function profile(u){
+let n=document.getElementById("firebaseUserName"),e=document.getElementById("firebaseUserEmail"),l=document.getElementById("googleLoginBtn"),o=document.getElementById("googleLogoutBtn"),i=document.getElementById("firebaseUserIcon");
+if(!u){n.textContent="Not signed in";e.textContent="Sign in to save your JAMA balance";l.style.display="block";o.style.display="none";i.innerHTML='<i class="fa-solid fa-user"></i>';return}
+n.textContent=u.displayName||"JAMA User";e.textContent=u.email||"Google account connected";l.style.display="none";o.style.display="block";i.innerHTML=u.photoURL?'<img src="'+u.photoURL.replace(/"/g,"&quot;")+'" alt="User">':'<i class="fa-solid fa-user"></i>'
+}
+
+let googleLoginInProgress=false;
+
+function resetGoogleButton(){
+    const button=document.getElementById("googleLoginBtn");
+
+    if(button){
+        button.disabled=false;
+        button.style.opacity="1";
+        button.innerHTML='<i class="fa-brands fa-google"></i>&nbsp; CONTINUE WITH GOOGLE';
+    }
+
+    googleLoginInProgress=false;
+}
+
+window.jamaGoogleLogin=async function(){
+
+    if(googleLoginInProgress) return;
+
+    if(auth.currentUser){
+        showToast("Google account is already connected");
+        return;
+    }
+
+    googleLoginInProgress=true;
+
+    const button=document.getElementById("googleLoginBtn");
+
+    if(button){
+        button.disabled=true;
+        button.style.opacity=".65";
+        button.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i>&nbsp; OPENING GOOGLE...';
+    }
+
+    try{
+
+        /*
+         * IMPORTANT:
+         * Do NOT sign out before login.
+         * The sign-in request must remain tied to the
+         * user's actual button click.
+         */
+        const result=await signInWithPopup(auth,provider);
+
+        if(result && result.user){
+            showToast("Google account connected");
+            return;
+        }
+
+        resetGoogleButton();
+
+    }catch(e){
+
+        console.error("JAMA Google sign-in:",e);
+
+        /*
+         * On mobile browsers a popup may be blocked.
+         * In that case use Firebase redirect authentication.
+         */
+        if(e.code==="auth/popup-blocked"){
+
+            showToast("Opening Google sign-in...");
+
+            try{
+                await signInWithRedirect(auth,provider);
+                return;
+            }catch(redirectError){
+                console.error("JAMA Google redirect:",redirectError);
+                showToast(
+                    redirectError.message ||
+                    "Google sign-in could not be opened"
+                );
+            }
+
+        }
+        else if(e.code==="auth/cancelled-popup-request"){
+
+            /*
+             * A second popup request was made while the
+             * first one was still pending.
+             */
+            showToast("Google sign-in is already opening");
+
+        }
+        else if(e.code==="auth/popup-closed-by-user"){
+
+            showToast("Google sign-in cancelled");
+
+        }
+        else if(e.code==="auth/unauthorized-domain"){
+
+            showToast(
+                "Add this website domain in Firebase Authorized Domains"
+            );
+
+        }
+        else if(e.code==="auth/operation-not-supported-in-this-environment"){
+
+            showToast(
+                "Open JAMA Coin from Firebase Hosting or another HTTPS site"
+            );
+
+        }
+        else{
+
+            showToast(
+                e.message ||
+                "Google sign-in failed"
+            );
+
+        }
+
+        resetGoogleButton();
+    }
+};
+
+/*
+ * Complete a redirect login if Firebase returned here
+ * after the Google page redirected back to JAMA Coin.
+ */
+getRedirectResult(auth)
+    .then(result=>{
+
+        if(result && result.user){
+            showToast("Google account connected");
+        }
+
+    })
+    .catch(e=>{
+
+        console.error("JAMA Google redirect result:",e);
+
+        if(e.code==="auth/unauthorized-domain"){
+            showToast(
+                "Add this website domain in Firebase Authorized Domains"
+            );
+        }
+        else if(e.code){
+            showToast(
+                e.message ||
+                "Google sign-in could not be completed"
+            );
+        }
+
+    })
+    .finally(()=>{
+
+        resetGoogleButton();
+
+    });
+
+window.jamaGoogleLogout=async function(){try{await signOut(auth);clearInterval(ticker);user=null;balance=0;mining=false;started=ends=null;progress(0);updateUI();showToast("Signed out")}catch(e){showToast("Could not sign out")}};
+
+onAuthStateChanged(auth,async u=>{user=u||null;profile(user);if(user){await loadUser();showToast("JAMA account loaded")}else{clearInterval(ticker);updateUI()}});
+</script>
+</body>
+</html>

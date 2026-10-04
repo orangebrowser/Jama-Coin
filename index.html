@@ -37,7 +37,7 @@ body{overflow-x:hidden}button,input{font-family:inherit}button{border:0;cursor:p
 .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.quick{background:var(--card);border:1px solid var(--border);border-radius:17px;min-height:82px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px}.quick i,.firebase-user-icon{display:grid;place-items:center;background:rgba(255,122,0,.1);color:var(--orange)}
 .quick i{width:34px;height:34px;border-radius:11px}.quick span{font-size:10px;font-weight:700}
 .market-card,.reward-card,.wallet-address,.holding,.profile-card,.profile-login-card,.profile-item{background:var(--card);border:1px solid var(--border)}.market-card{border-radius:23px;padding:18px}.market-pair{display:flex;align-items:center;gap:10px}.market-pair strong{display:block;font-size:13px}.market-pair small{color:var(--muted);font-size:9px}.market-price{margin-top:17px;font-size:27px;font-weight:900}.market-price small{color:var(--muted);font-size:11px;font-weight:600}.market-footer{display:flex;justify-content:space-between;margin-top:13px;padding-top:13px;border-top:1px solid var(--border);font-size:9px}.market-footer span{color:var(--muted)}
-.reward-card{padding:19px;border-radius:23px}.reward-main{display:flex;align-items:center;gap:19px}.progress{width:112px;height:112px;flex:none;position:relative}.progress svg{width:100%;height:100%;transform:rotate(-90deg)}.progress-bg,.progress-value{fill:none;stroke-width:9}.progress-bg{stroke:#242424}.progress-value{stroke:var(--orange);stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:.5s}.progress-center{position:absolute;inset:0;display:grid;place-items:center;text-align:center}.progress-center strong{font-size:19px}.progress-center small{display:block;color:var(--muted);font-size:8px}.reward-info{flex:1}.reward-info h3{font-size:15px;margin-bottom:7px}.reward-info p{color:var(--muted);font-size:10px;line-height:1.6}.mining-rate{margin-top:10px;color:var(--orange);font-size:11px;font-weight:800}.primary-btn{width:100%;height:53px;border-radius:15px;background:var(--orange);color:#000;font-weight:900;margin-top:18px}.reward-status{margin-top:13px;padding-top:13px;border-top:1px solid var(--border);display:flex;justify-content:space-between;color:var(--muted);font-size:10px}.reward-status b{color:#fff}.reward-signin{cursor:pointer;color:var(--orange)!important}.reward-signin:hover{text-decoration:underline}
+.reward-card{padding:19px;border-radius:23px}.reward-main{display:flex;align-items:center;gap:19px}.progress{width:112px;height:112px;flex:none;position:relative}.progress svg{width:100%;height:100%;transform:rotate(-90deg)}.progress-bg,.progress-value{fill:none;stroke-width:9}.progress-bg{stroke:#242424}.progress-value{stroke:var(--orange);stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:.5s}.progress-center{position:absolute;inset:0;display:grid;place-items:center;text-align:center}.progress-center strong{font-size:19px}.progress-center small{display:block;color:var(--muted);font-size:8px}.reward-info{flex:1}.reward-info h3{font-size:15px;margin-bottom:7px}.reward-info p{color:var(--muted);font-size:10px;line-height:1.6}.mining-rate{margin-top:10px;color:var(--orange);font-size:11px;font-weight:800}.primary-btn{width:100%;height:53px;border-radius:15px;background:var(--orange);color:#000;font-weight:900;margin-top:18px}.reward-status{margin-top:13px;padding-top:13px;border-top:1px solid var(--border);display:flex;justify-content:space-between;color:var(--muted);font-size:10px}.reward-status b{color:#fff} .reward-signin{cursor:pointer;color:var(--orange)!important;text-decoration:none}.reward-signin:hover{text-decoration:underline}
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.info-card{background:var(--card);border:1px solid var(--border);padding:15px;border-radius:17px}.info-card i{color:var(--orange);font-size:15px;margin-bottom:11px}.info-card span{display:block;color:var(--muted);font-size:9px;margin-bottom:4px}.info-card strong{font-size:12px}
 .wallet-address{padding:18px;border-radius:21px}.address-label{color:var(--muted);font-size:10px;margin-bottom:9px}.address-row{display:flex;align-items:center;gap:8px}.address{flex:1;font-size:12px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.copy-btn{width:37px;height:37px;border-radius:11px;background:rgba(255,122,0,.1);color:var(--orange)}.wallet-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:13px}.wallet-action{padding:17px 10px;border-radius:17px;border:1px solid var(--border);background:var(--card);color:#fff;text-align:center}.wallet-action i{color:var(--orange);display:block;margin-bottom:8px}.wallet-action span{font-size:10px;font-weight:700}
 .holding{margin-top:14px;padding:17px;border-radius:19px}.holding-left{display:flex;align-items:center;gap:11px}.holding-name strong{display:block;font-size:12px}.holding-name small,.holding-right small{color:var(--muted);font-size:9px}.holding-right{text-align:right}.holding-right strong{display:block;font-size:13px}
@@ -182,6 +182,29 @@ body{overflow-x:hidden}button,input{font-family:inherit}button{border:0;cursor:p
     .page{max-width:1200px}
     .topbar{padding:0 44px}
 }
+
+/* PREMIUM MINING ENGINES */
+.engine-store{margin-top:25px;padding:18px;background:linear-gradient(180deg,#111,#0b0b0b);border:1px solid var(--border);border-radius:23px}
+.engine-store-head{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin-bottom:14px}
+.engine-store-head h3{font-size:15px;font-weight:900}.engine-store-head p{margin-top:4px;color:var(--muted);font-size:9px;line-height:1.5}
+.engine-label{padding:7px 9px;border-radius:9px;background:rgba(255,122,0,.09);color:var(--orange);font-size:8px;font-weight:900;letter-spacing:.7px}
+.engine-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.engine-card{min-width:0;padding:11px;border-radius:18px;background:#151515;border:1px solid rgba(255,255,255,.08);transition:.2s}
+.engine-card:hover{transform:translateY(-2px);border-color:rgba(255,122,0,.28);background:#181818}
+.engine-image{width:100%;height:88px;overflow:hidden;border-radius:12px;background:#090909;border:1px solid rgba(255,255,255,.06)}
+.engine-image img{width:100%;height:100%;display:block;object-fit:cover;filter:saturate(.78) contrast(1.04)}
+.engine-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}.engine-name{font-size:13px;font-weight:900}
+.engine-badge{font-size:7px;font-weight:900;letter-spacing:.6px;padding:5px 7px;border-radius:7px;background:#0b0b0b;color:#aaa;border:1px solid rgba(255,255,255,.07)}
+.engine-desc{color:var(--muted);font-size:9px;line-height:1.5;margin-top:6px;min-height:27px}
+.engine-stats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.engine-stat{padding:8px;border-radius:11px;background:#0d0d0d;border:1px solid rgba(255,255,255,.06)}
+.engine-stat span{display:block;color:#777;font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.engine-stat strong{display:block;color:#fff;font-size:11px;margin-top:3px}.engine-rate{color:var(--orange)!important}
+.engine-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.07)}
+.engine-price strong{display:block;font-size:15px;font-weight:900}.engine-price small{display:block;color:var(--muted);font-size:7px;margin-top:2px}
+.engine-select{height:34px;padding:0 12px;border-radius:10px;background:var(--orange);color:#050505;font-size:8px;font-weight:900;white-space:nowrap}.engine-select:active{transform:scale(.97)}
+.engine-note{margin-top:11px;padding-top:11px;border-top:1px solid rgba(255,255,255,.07);color:#707070;font-size:8px;line-height:1.55}
+@media(max-width:850px){.engine-list{grid-template-columns:1fr}.engine-card{display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:12px;align-items:start}.engine-image{height:82px;grid-row:1 / span 4}.engine-top{margin-top:0}.engine-desc{min-height:0}.engine-stats{margin-top:8px}.engine-bottom{grid-column:2;margin-top:9px;padding-top:9px}}
+@media(max-width:420px){.engine-store{padding:14px}.engine-label{display:none}.engine-card{grid-template-columns:82px minmax(0,1fr);padding:9px;column-gap:10px}.engine-image{height:70px}.engine-name{font-size:12px}.engine-desc{font-size:8px}.engine-stat{padding:7px}.engine-stat strong{font-size:10px}.engine-price strong{font-size:13px}.engine-select{height:32px;padding:0 9px;font-size:7px}}
+
 </style>
 </head>
 
@@ -206,8 +229,17 @@ body{overflow-x:hidden}button,input{font-family:inherit}button{border:0;cursor:p
 <section class="section"><div class="section-head"><h2>Market</h2><span>JAMA/USD</span></div><div class="market-card"><div class="market-top"><div class="market-pair"><div class="market-logo"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="57" fill="#ff7a00"/><circle cx="60" cy="60" r="45" fill="#050505"/><path d="M35 34H83V45H73V70C73 82 67 88 55 88C44 88 36 82 34 71L46 67C47 73 50 76 55 76C59 76 61 74 61 69V45H35Z" fill="#fff"/><path d="M31 34H87V40H31Z" fill="#ff7a00"/></svg></div><div><strong>JAMA / USD</strong><small>Jama Coin</small></div></div><i class="fa-solid fa-chart-line" style="color:var(--orange)"></i></div><div class="market-price" id="marketPrice">— <small>USD</small></div><div class="market-footer"><span>Network</span><b>BNB Smart Chain</b></div></div></section>
 
 <section class="section"><div class="section-head"><h2>Jama Rewards</h2><span>REWARD ENGINE</span></div><div class="reward-card"><div class="reward-main"><div class="progress"><svg viewBox="0 0 100 100"><circle class="progress-bg" cx="50" cy="50" r="45"/><circle class="progress-value" id="progressCircle" cx="50" cy="50" r="45"/></svg><div class="progress-center"><div><strong id="progressText">0%</strong><small>MINING</small></div></div></div><div class="reward-info"><h3>Jama Mining</h3><p>Mine for one hour per session. Your balance is saved to your Google account and can be recovered on another device.</p><div class="mining-rate" id="miningRate">0.05 JAMA / hour</div><button class="primary-btn" style="height:42px;margin-top:12px;font-size:10px" onclick="startMining()">START MINING</button>
-</div></div><div class="reward-status"><span>Mining status</span><b id="rewardStatus" class="reward-signin" onclick="goToProfile(event)">Sign in to mine</b></div></div></section>
+</div></div><div class="reward-status"><span>Mining status</span><b id="rewardStatus">Sign in to mine</b></div></div></section>
 
+
+<section class="engine-store">
+<div class="engine-store-head"><div><h3>Premium Mining Engines</h3><p>Optional virtual engines with higher reward rates.</p></div><span class="engine-label">UPGRADE POWER</span></div>
+<div class="engine-list">
+<article class="engine-card"><div class="engine-image"><img loading="lazy" src="https://www.allegromicro.com/-/media/images/insights-and-innovations/blogs/2025/data-center-thermal-management-strategies-1.jpeg?sc_lang=en" alt="High performance server cooling infrastructure"></div><div class="engine-top"><strong class="engine-name">Starter Engine</strong><span class="engine-badge">STARTER</span></div><p class="engine-desc">Compact compute engine for users starting with premium mining.</p><div class="engine-stats"><div class="engine-stat"><span>Virtual power</span><strong>50 TH/s</strong></div><div class="engine-stat"><span>Reward</span><strong class="engine-rate">10 JAMA/hr</strong></div></div><div class="engine-bottom"><div class="engine-price"><strong>$5</strong><small>one-time engine access</small></div><button class="engine-select" onclick="selectMiningEngine('Starter Engine')">SELECT</button></div></article>
+<article class="engine-card"><div class="engine-image"><img loading="lazy" src="https://www.stulz.com/fileadmin/_processed_/4/2/csm_553720_Stulz_CyberRack_Motiv_02_27dc0dcccd.png" alt="High density server rack cooling system"></div><div class="engine-top"><strong class="engine-name">Pro Engine</strong><span class="engine-badge">PRO</span></div><p class="engine-desc">Higher-capacity compute engine designed for faster virtual rewards.</p><div class="engine-stats"><div class="engine-stat"><span>Virtual power</span><strong>150 TH/s</strong></div><div class="engine-stat"><span>Reward</span><strong class="engine-rate">50 JAMA/hr</strong></div></div><div class="engine-bottom"><div class="engine-price"><strong>$40</strong><small>10% discounted price</small></div><button class="engine-select" onclick="selectMiningEngine('Pro Engine')">SELECT</button></div></article>
+<article class="engine-card"><div class="engine-image"><img loading="lazy" src="https://www.dell.com/wp-uploads/2026/03/Carrie1-640x640.jpg" alt="High performance enterprise compute rack"></div><div class="engine-top"><strong class="engine-name">Elite Engine</strong><span class="engine-badge">ELITE</span></div><p class="engine-desc">Top-tier virtual compute engine for the highest listed reward rate.</p><div class="engine-stats"><div class="engine-stat"><span>Virtual power</span><strong>300 TH/s</strong></div><div class="engine-stat"><span>Reward</span><strong class="engine-rate">200 JAMA/hr</strong></div></div><div class="engine-bottom"><div class="engine-price"><strong>$100</strong><small>50% discounted price</small></div><button class="engine-select" onclick="selectMiningEngine('Elite Engine')">SELECT</button></div></article>
+</div><div class="engine-note">TH/s shown here is virtual power for the JAMA reward system; it is not physical ASIC mining performed by the user's device.</div>
+</section>
 <section class="section"><div class="section-head"><h2>Jama Coin</h2><span>JAMA/USD</span></div><div class="info-grid"><div class="info-card"><i class="fa-solid fa-coins"></i><span>Token</span><strong>Jama Coin</strong></div><div class="info-card"><i class="fa-solid fa-tag"></i><span>Pair</span><strong>JAMA/USD</strong></div><div class="info-card"><i class="fa-solid fa-link"></i><span>Network</span><strong>BNB Chain</strong></div><div class="info-card"><i class="fa-solid fa-shield-halved"></i><span>Wallet</span><strong>EVM Wallet</strong></div></div></section>
 </main>
 
@@ -222,7 +254,7 @@ body{overflow-x:hidden}button,input{font-family:inherit}button{border:0;cursor:p
 
 <main class="page" id="profile">
 <div class="welcome"><p>Jama Coin</p><h1>Profile</h1></div>
-<div class="profile-login-card"><div class="profile-login-user"><div class="firebase-user-icon" id="firebaseUserIcon"><i class="fa-solid fa-user"></i></div><div><strong id="firebaseUserName">Not signed in</strong><small id="firebaseUserEmail">Sign in to save your JAMA balance</small></div></div><button class="primary-btn google-login-button" id="googleLoginBtn" onclick="jamaGoogleLogin()"><i class="fa-brands fa-google"></i>&nbsp; CONTINUE WITH GOOGLE</button><button class="profile-logout" id="googleLogoutBtn" onclick="jamaGoogleLogout()" style="display:none"><i class="fa-solid fa-right-from-bracket"></i> SIGN OUT</button></div>
+<div class="profile-login-card"><div class="profile-login-user"><div class="firebase-user-icon" id="firebaseUserIcon"><i class="fa-solid fa-user"></i></div><div><strong id="firebaseUserName">Not signed in</strong><small id="firebaseUserEmail">Sign in to save your JAMA balance</small></div></div><button class="primary-btn google-login-button" id="googleLoginBtn" class="primary-btn google-login-button" onclick="jamaGoogleLogin()"><i class="fa-brands fa-google"></i>&nbsp; CONTINUE WITH GOOGLE</button><button class="profile-logout" id="googleLogoutBtn" onclick="jamaGoogleLogout()" style="display:none"><i class="fa-solid fa-right-from-bracket"></i> SIGN OUT</button></div>
 <div class="profile-card"><div class="profile-logo"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="57" fill="#ff7a00"/><circle cx="60" cy="60" r="45" fill="#050505"/><path d="M35 34H83V45H73V70C73 82 67 88 55 88C44 88 36 82 34 71L46 67C47 73 50 76 55 76C59 76 61 74 61 69V45H35Z" fill="#fff"/><path d="M31 34H87V40H31Z" fill="#ff7a00"/></svg></div><h2>Jama Coin</h2><p>JAMA / USD Network</p></div>
 <div class="profile-menu"><button class="profile-item" onclick="connectWallet()"><i class="fa-solid fa-wallet"></i><span>Wallet Connection</span><small><i class="fa-solid fa-chevron-right"></i></small></button><button class="profile-item" onclick="switchToBNB()"><i class="fa-solid fa-link"></i><span>Network</span><small>BNB</small></button><button class="profile-item" onclick="showToast('JAMA/USD market interface')"><i class="fa-solid fa-dollar-sign"></i><span>Market Pair</span><small>USD</small></button></div>
 </main>
@@ -240,9 +272,16 @@ let currentAddress="",toastTimer;
 
 function showToast(message){const t=document.getElementById("toast");t.textContent=message;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2600)}
 function goToProfile(){
-    const profileButton=document.querySelectorAll(".nav-btn")[3];
+    const profileButton=document.querySelector('.nav-btn:nth-child(4)');
     navigate("profile",profileButton);
+    setTimeout(()=>{
+        document.getElementById("googleLoginBtn")?.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+    },120);
 }
+
 function navigate(page,button){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));const x=document.getElementById(page);if(x)x.classList.add("active");document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));if(button)button.classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
 function openModal(id){document.getElementById(id)?.classList.add("show")}function closeModal(id){document.getElementById(id)?.classList.remove("show")}
 document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("show")}));
@@ -262,6 +301,38 @@ function updateWalletUI(){if(!currentAddress)return;let s=currentAddress.slice(0
 async function copyAddress(){if(!currentAddress){showToast("Connect your wallet first");return}try{await navigator.clipboard.writeText(currentAddress);showToast("Address copied")}catch(e){showToast("Could not copy address")}}
 function sendToken(){showToast("JAMA transfer will be enabled after the official contract is connected")}
 
+
+const JAMA_ENGINES={
+    "Starter Engine":{id:"starter",name:"Starter Engine",price:5,rate:10,power:"50 TH/s"},
+    "Pro Engine":{id:"pro",name:"Pro Engine",price:40,rate:50,power:"150 TH/s"},
+    "Elite Engine":{id:"elite",name:"Elite Engine",price:100,rate:200,power:"300 TH/s"}
+};
+
+window.selectMiningEngine=async function(name){
+    const engine=JAMA_ENGINES[name];
+    const firebase=window.JAMA_FIREBASE;
+    if(!engine){showToast("Mining engine not found");return;}
+    if(!firebase?.auth?.currentUser){showToast("Sign in with Google before purchasing an engine");goToProfile();return;}
+    const btn=[...document.querySelectorAll('.engine-select')].find(b=>b.getAttribute('onclick')?.includes(name));
+    if(btn){btn.disabled=true;btn.textContent="OPENING...";}
+    try{
+        const init=await firebase.initializePayment({engineId:engine.id});
+        if(!init?.data?.accessCode){throw new Error("Payment checkout could not be initialized");}
+        // Redirect into Paystack Checkout. Google Pay/Card and the other enabled channels
+        // are presented by Paystack. The secure verification happens after the callback.
+        if(init?.data?.authorizationUrl){
+            window.location.href=init.data.authorizationUrl;
+        }else{
+            throw new Error("Paystack checkout URL was not returned");
+        }
+    }catch(e){
+        console.error(e);
+        showToast(e?.message||"Could not open payment checkout");
+    }finally{
+        if(btn){btn.disabled=false;btn.textContent="SELECT";}
+    }
+};
+
 if(window.ethereum){ethereum.on("accountsChanged",a=>{currentAddress=a?.[0]||"";if(currentAddress)updateWalletUI()});ethereum.on("chainChanged",()=>showToast("Network changed"))}
 
 window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loader")?.classList.add("hide"),1800));
@@ -269,8 +340,9 @@ window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loade
 
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import {getFirestore,doc,getDoc,setDoc,updateDoc,serverTimestamp,Timestamp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import {getFunctions,httpsCallable} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-functions.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyBlnkK6si7qDIt0HnvshB18O-7Ltok-o00",
@@ -281,8 +353,10 @@ messagingSenderId:"164893738834",
 appId:"1:164893738834:web:8e4316bc35d313bdd0dc8b",
 measurementId:"G-EF0W3D365C"
 };
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider();
-window.JAMA_FIREBASE={auth,db,provider,signInWithPopup,signInWithRedirect,getRedirectResult,signOut,onAuthStateChanged,doc,getDoc,setDoc,updateDoc,serverTimestamp,Timestamp};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),functions=getFunctions(app,"us-central1"),provider=new GoogleAuthProvider();
+const initializePayment=httpsCallable(functions,"initializePayment");
+const verifyPayment=httpsCallable(functions,"verifyPayment");
+window.JAMA_FIREBASE={auth,db,functions,provider,signInWithPopup,signOut,onAuthStateChanged,doc,getDoc,setDoc,updateDoc,serverTimestamp,Timestamp,initializePayment,verifyPayment};
 
 const MINING_START=new Date("2026-10-01T00:00:00Z"),SESSION=3600000;
 let user=null,balance=0,mining=false,started=null,ends=null,ticker=null;
@@ -355,159 +429,32 @@ if(!u){n.textContent="Not signed in";e.textContent="Sign in to save your JAMA ba
 n.textContent=u.displayName||"JAMA User";e.textContent=u.email||"Google account connected";l.style.display="none";o.style.display="block";i.innerHTML=u.photoURL?'<img src="'+u.photoURL.replace(/"/g,"&quot;")+'" alt="User">':'<i class="fa-solid fa-user"></i>'
 }
 
-let googleLoginInProgress=false;
-
-function resetGoogleButton(){
-    const button=document.getElementById("googleLoginBtn");
-
-    if(button){
-        button.disabled=false;
-        button.style.opacity="1";
-        button.innerHTML='<i class="fa-brands fa-google"></i>&nbsp; CONTINUE WITH GOOGLE';
+async function confirmEnginePayment(reference){
+    try{
+        const result=await verifyPayment({reference});
+        const d=result?.data;
+        if(d?.fulfilled){showToast((d.engineName||"Engine")+" activated successfully");await loadUser();}
+        else if(d?.status==="success"){showToast("Payment confirmed");await loadUser();}
+        else{showToast("Payment was not confirmed yet");}
+    }catch(e){
+        console.error(e);
+        showToast(e?.message||"Payment verification failed");
     }
-
-    googleLoginInProgress=false;
 }
 
-window.jamaGoogleLogin=async function(){
-
-    if(googleLoginInProgress) return;
-
-    if(auth.currentUser){
-        showToast("Google account is already connected");
-        return;
-    }
-
-    googleLoginInProgress=true;
-
-    const button=document.getElementById("googleLoginBtn");
-
-    if(button){
-        button.disabled=true;
-        button.style.opacity=".65";
-        button.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i>&nbsp; OPENING GOOGLE...';
-    }
-
-    try{
-
-        /*
-         * IMPORTANT:
-         * Do NOT sign out before login.
-         * The sign-in request must remain tied to the
-         * user's actual button click.
-         */
-        const result=await signInWithPopup(auth,provider);
-
-        if(result && result.user){
-            showToast("Google account connected");
-            return;
-        }
-
-        resetGoogleButton();
-
-    }catch(e){
-
-        console.error("JAMA Google sign-in:",e);
-
-        /*
-         * On mobile browsers a popup may be blocked.
-         * In that case use Firebase redirect authentication.
-         */
-        if(e.code==="auth/popup-blocked"){
-
-            showToast("Opening Google sign-in...");
-
-            try{
-                await signInWithRedirect(auth,provider);
-                return;
-            }catch(redirectError){
-                console.error("JAMA Google redirect:",redirectError);
-                showToast(
-                    redirectError.message ||
-                    "Google sign-in could not be opened"
-                );
-            }
-
-        }
-        else if(e.code==="auth/cancelled-popup-request"){
-
-            /*
-             * A second popup request was made while the
-             * first one was still pending.
-             */
-            showToast("Google sign-in is already opening");
-
-        }
-        else if(e.code==="auth/popup-closed-by-user"){
-
-            showToast("Google sign-in cancelled");
-
-        }
-        else if(e.code==="auth/unauthorized-domain"){
-
-            showToast(
-                "Add this website domain in Firebase Authorized Domains"
-            );
-
-        }
-        else if(e.code==="auth/operation-not-supported-in-this-environment"){
-
-            showToast(
-                "Open JAMA Coin from Firebase Hosting or another HTTPS site"
-            );
-
-        }
-        else{
-
-            showToast(
-                e.message ||
-                "Google sign-in failed"
-            );
-
-        }
-
-        resetGoogleButton();
-    }
-};
-
-/*
- * Complete a redirect login if Firebase returned here
- * after the Google page redirected back to JAMA Coin.
- */
-getRedirectResult(auth)
-    .then(result=>{
-
-        if(result && result.user){
-            showToast("Google account connected");
-        }
-
-    })
-    .catch(e=>{
-
-        console.error("JAMA Google redirect result:",e);
-
-        if(e.code==="auth/unauthorized-domain"){
-            showToast(
-                "Add this website domain in Firebase Authorized Domains"
-            );
-        }
-        else if(e.code){
-            showToast(
-                e.message ||
-                "Google sign-in could not be completed"
-            );
-        }
-
-    })
-    .finally(()=>{
-
-        resetGoogleButton();
-
-    });
-
+window.jamaGoogleLogin=async function(){try{let r=await signInWithPopup(auth,provider);if(r.user)showToast("Google account connected")}catch(e){console.error(e);showToast(e.code==="auth/popup-closed-by-user"?"Google sign-in cancelled":e.message||"Google sign-in failed")}};
 window.jamaGoogleLogout=async function(){try{await signOut(auth);clearInterval(ticker);user=null;balance=0;mining=false;started=ends=null;progress(0);updateUI();showToast("Signed out")}catch(e){showToast("Could not sign out")}};
+
+window.onPaystackSuccess=confirmEnginePayment;
+
+// Paystack Popup V2 exposes a transaction reference through its success callback.
+// We also keep verification server-side, so the frontend never decides that a payment is valid.
+window.__jamaHandlePaystackSuccess=async function(transaction){
+    if(transaction?.reference) await confirmEnginePayment(transaction.reference);
+};
 
 onAuthStateChanged(auth,async u=>{user=u||null;profile(user);if(user){await loadUser();showToast("JAMA account loaded")}else{clearInterval(ticker);updateUI()}});
 </script>
+<script src="https://js.paystack.co/v2/inline.js"></script>
 </body>
 </html>
